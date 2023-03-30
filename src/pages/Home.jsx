@@ -5,13 +5,16 @@ import { NoteList } from "../components";
 const Home = () => {
   const [notes, setNotes] = useState([]);
 
-  // fetch notes data
-  useEffect(() => {
-    const getNotes = async () => {
-      const { data } = await axios.get("http://localhost:8000/api/notes/");
-      setNotes(data);
-    };
+  // get all notes
+  const getNotes = async () => {
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/notes/`
+    );
+    setNotes(data);
+  };
 
+  // fetch data at first render
+  useEffect(() => {
     getNotes();
   }, []);
 
