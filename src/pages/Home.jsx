@@ -13,6 +13,14 @@ const Home = () => {
     setNotes(data);
   };
 
+  // handle delete note
+  const handleDelete = async (id) => {
+    setNotes(notes.filter((note) => note.id !== id));
+    await axios.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/api/notes/delete/${id}/`
+    );
+  };
+
   // fetch data at first render
   useEffect(() => {
     getNotes();
@@ -22,7 +30,7 @@ const Home = () => {
     <section className="min-h-[350px] w-full">
       <div className="flex flex-col">
         {notes?.map((note) => (
-          <NoteList key={note.id} note={note} />
+          <NoteList key={note.id} note={note} handleDelete={handleDelete} />
         ))}
       </div>
     </section>
