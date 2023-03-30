@@ -6,11 +6,13 @@ function App() {
   return (
     <main>
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/note/:id" element={<Note />} />
-        </Routes>
+        <div className="bg-gray-400 max-w-xl rounded-xl mt-10 min-h-[50vh] mx-auto">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/note/:id" element={<Note />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </main>
   );

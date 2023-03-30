@@ -19,10 +19,12 @@ const Home = () => {
   }, []);
 
   return (
-    <section>
-      {notes?.map((note) => (
-        <NoteList key={note.id} note={note} />
-      ))}
+    <section className="min-h-[350px] w-full">
+      <div className="flex flex-col">
+        {notes?.map((note) => (
+          <NoteList key={note.id} note={note} />
+        ))}
+      </div>
     </section>
   );
 };

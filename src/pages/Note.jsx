@@ -18,9 +18,21 @@ const Note = () => {
   // fetch data
   useEffect(() => {
     getNoteData();
-  }, []);
+  }, [id]);
 
-  return <div>{noteData.body}</div>;
+  return (
+    <form>
+      <textarea className="min-h-[350px] bg-transparent p-3 outline-none w-full">
+        {noteData?.body}
+      </textarea>
+      <button
+        type="submit"
+        className="bg-green-400 rounded text-white w-full py-2 text-center font-bold text-xl"
+      >
+        Edit
+      </button>
+    </form>
+  );
 };
 
 export default Note;
