@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 const Note = () => {
   const params = useParams();
-  const [noteData, setNoteData] = useState({});
+  const [noteData, setNoteData] = useState("");
   const { id } = params;
 
   // get single note data
@@ -12,7 +12,16 @@ const Note = () => {
     const { data } = await axios.get(
       `${import.meta.env.VITE_BACKEND_URL}/api/notes/${id}/`
     );
-    setNoteData(data);
+    setNoteData(data?.body);
+  };
+
+  // handle note update
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    await axios.put(
+      `${import.meta.env.VITE_BACKEND_URL}/api/notes/update/${id}/`,
+      { body: noteData }
+    );
   };
 
   // fetch data
@@ -21,10 +30,12 @@ const Note = () => {
   }, [id]);
 
   return (
-    <form>
-      <textarea className="min-h-[350px] bg-transparent p-3 outline-none w-full">
-        {noteData?.body}
-      </textarea>
+    <form onSubmit={handleEdit}>
+      <textarea
+        className="min-h-[350px] text-white bg-transparent p-3 outline-none w-full"
+        value={noteData}
+        onChange={(e) => setNoteData(e.target.value)}
+      ></textarea>
       <button
         type="submit"
         className="bg-green-400 rounded text-white w-full py-2 text-center font-bold text-xl"
