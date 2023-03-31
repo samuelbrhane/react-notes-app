@@ -1,5 +1,5 @@
 import { Header } from "./components";
-import { Home, Note } from "./pages";
+import { Create, Home, Note } from "./pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/note/:id" element={<Note />} />
+            <Route path="/create" element={<Create />} />
           </Routes>
         </div>
       </BrowserRouter>
